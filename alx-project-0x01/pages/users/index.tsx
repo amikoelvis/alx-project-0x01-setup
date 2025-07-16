@@ -14,20 +14,24 @@ export async function getStaticProps() {
   return { props: { posts } };
 }
 
-const Users: React.FC<UsersPageProps> = ({ posts }) => {
+const Users: React.FC<UsersPageProps> = ({ posts: initialPosts }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [post, setUsersList] = useState<UserProps[]>(posts);
+
+  // Make `posts` stateful so we can modify it
+  const [posts, setPosts] = useState<UserProps[]>(initialPosts);
 
   const handleAddUser = (newUser: UserData) => {
     const addedUser: UserProps = {
       ...newUser,
-      id: post.length + 1 // auto-generate ID
+      id: posts.length + 1, // auto-generate unique ID
     };
-    setUsersList([...post, addedUser]);
+    setPosts([...posts, addedUser]); // update state
+    setModalOpen(false);
   };
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
+      {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Users</h1>
         <button
@@ -38,10 +42,9 @@ const Users: React.FC<UsersPageProps> = ({ posts }) => {
         </button>
       </div>
 
-      {/* Grid of User Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {post.map((user) => (
-          <UserCard key={user.id} {...user} />
+        {posts.map((user) => (
+          <UserCard key={user.id} user={user} />
         ))}
       </div>
 
