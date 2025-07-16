@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { UserData, UserModalProps } from "@/interfaces";
+import { UserData, UserModalProps, UserProps } from "@/interfaces";
 
 const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
-  const [user, setUser] = useState<UserData>({
+  const [post, setUser] = useState<UserProps>({
+    id: 0,
     name: "",
     username: "",
     email: "",
@@ -46,7 +47,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(user);
+    onSubmit(post);
     onClose();
   };
 
@@ -63,7 +64,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
             type="text"
             name="name"
             placeholder="Full Name"
-            value={user.name}
+            value={post.name}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
@@ -71,7 +72,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
             type="text"
             name="username"
             placeholder="Username"
-            value={user.username}
+            value={post.username}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
@@ -79,7 +80,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
             type="email"
             name="email"
             placeholder="Email"
-            value={user.email}
+            value={post.email}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
@@ -87,7 +88,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
             type="text"
             name="phone"
             placeholder="Phone"
-            value={user.phone}
+            value={post.phone}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
@@ -95,7 +96,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
             type="text"
             name="website"
             placeholder="Website"
-            value={user.website}
+            value={post.website}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
@@ -107,7 +108,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
               type="text"
               name="address.street"
               placeholder="Street"
-              value={user.address.street}
+              value={post.address.street}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg mb-2"
             />
@@ -115,7 +116,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
               type="text"
               name="address.suite"
               placeholder="Suite"
-              value={user.address.suite}
+              value={post.address.suite}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg mb-2"
             />
@@ -123,7 +124,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
               type="text"
               name="address.city"
               placeholder="City"
-              value={user.address.city}
+              value={post.address.city}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg mb-2"
             />
@@ -131,7 +132,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
               type="text"
               name="address.zipcode"
               placeholder="Zipcode"
-              value={user.address.zipcode}
+              value={post.address.zipcode}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg"
             />
@@ -144,7 +145,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
               type="text"
               name="company.name"
               placeholder="Company Name"
-              value={user.company.name}
+              value={post.company.name}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg mb-2"
             />
@@ -152,7 +153,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
               type="text"
               name="company.catchPhrase"
               placeholder="Catch Phrase"
-              value={user.company.catchPhrase}
+              value={post.company.catchPhrase}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg mb-2"
             />
@@ -160,7 +161,7 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
               type="text"
               name="company.bs"
               placeholder="Business Services"
-              value={user.company.bs}
+              value={post.company.bs}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg"
             />
