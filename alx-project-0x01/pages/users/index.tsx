@@ -16,14 +16,14 @@ export async function getStaticProps() {
 
 const Users: React.FC<UsersPageProps> = ({ posts }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [usersList, setUsersList] = useState<UserProps[]>(posts);
+  const [post, setUsersList] = useState<UserProps[]>(posts);
 
   const handleAddUser = (newUser: UserData) => {
     const addedUser: UserProps = {
       ...newUser,
-      id: usersList.length + 1 // auto-generate ID
+      id: post.length + 1 // auto-generate ID
     };
-    setUsersList([...usersList, addedUser]);
+    setUsersList([...post, addedUser]);
   };
 
   return (
@@ -40,7 +40,7 @@ const Users: React.FC<UsersPageProps> = ({ posts }) => {
 
       {/* Grid of User Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {usersList.map((user) => (
+        {post.map((user) => (
           <UserCard key={user.id} {...user} />
         ))}
       </div>
